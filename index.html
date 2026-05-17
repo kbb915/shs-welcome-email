@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SpringHill Suites McKinney, {fullname:first}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #172026;
+            --muted: #66727c;
+            --line: #dfe7ea;
+            --paper: #ffffff;
+            --mist: #eef7f8;
+            --mist-2: #f7fbfb;
+            --teal: #176b78;
+            --teal-dark: #0e4450;
+            --gold: #c89442;
+            --shadow: 0 24px 70px rgba(23, 32, 38, 0.13);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(23, 107, 120, 0.18), transparent 32rem),
+                linear-gradient(135deg, #f8fbfb 0%, #eef7f8 45%, #ffffff 100%);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .page {
+            width: min(1120px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 32px 0 56px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 18px 0 34px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border-radius: 14px;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            box-shadow: 0 12px 24px rgba(23, 107, 120, 0.22);
+        }
+
+        .eyebrow {
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .nav-link {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .hero-copy {
+            padding: clamp(30px, 6vw, 66px);
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.76);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+        }
+
+        h1 {
+            max-width: 760px;
+            margin: 12px 0 18px;
+            font-size: clamp(42px, 7vw, 82px);
+            line-height: 0.95;
+            letter-spacing: -0.07em;
+        }
+
+        .lede {
+            max-width: 650px;
+            margin: 0;
+            color: var(--muted);
+            font-size: clamp(18px, 2vw, 22px);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 20px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .button.primary {
+            color: #ffffff;
+            background: var(--teal-dark);
+            box-shadow: 0 14px 28px rgba(14, 68, 80, 0.22);
+        }
+
+        .button.secondary {
+            color: var(--teal-dark);
+            background: #ffffff;
+            border: 1px solid var(--line);
+        }
+
+        .hero-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 470px;
+            overflow: hidden;
+            border-radius: 28px;
+            background:
+                linear-gradient(160deg, rgba(14, 68, 80, 0.1), rgba(255, 255, 255, 0)),
+                var(--paper);
+            box-shadow: var(--shadow);
+        }
+
+        .photo-panel {
+            position: relative;
+            min-height: 260px;
+            background:
+                linear-gradient(rgba(14, 68, 80, 0.2), rgba(14, 68, 80, 0.18)),
+                url("https://i.ytimg.com/vi/mMbVVXKBnhg/maxresdefault.jpg") center/cover;
+        }
+
+        .arrival-pill {
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            padding: 12px 15px;
+            border-radius: 999px;
+            color: var(--teal-dark);
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            font-weight: 800;
+            box-shadow: 0 12px 30px rgba(23, 32, 38, 0.16);
+        }
+
+        .card-copy {
+            padding: 24px;
+        }
+
+        .card-copy h2 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            letter-spacing: -0.04em;
+        }
+
+        .card-copy p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+            margin: 28px 0;
+        }
+
+        .quick-card {
+            padding: 18px;
+            border: 1px solid rgba(223, 231, 234, 0.9);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .quick-card strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--teal-dark);
+            font-size: 14px;
+        }
+
+        .quick-card span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .email-shell {
+            display: grid;
+            grid-template-columns: 260px minmax(0, 1fr);
+            gap: 28px;
+            margin-top: 34px;
+        }
+
+        .side-panel,
+        .email-card {
+            border: 1px solid rgba(223, 231, 234, 0.9);
+            border-radius: 26px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 18px 48px rgba(23, 32, 38, 0.08);
+        }
+
+        .side-panel {
+            align-self: start;
+            position: sticky;
+            top: 24px;
+            padding: 22px;
+        }
+
+        .side-panel h2 {
+            margin: 0 0 12px;
+            font-size: 18px;
+            letter-spacing: -0.03em;
+        }
+
+        .side-panel ul {
+            display: grid;
+            gap: 10px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .side-panel li {
+            display: flex;
+            gap: 10px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .dot {
+            flex: 0 0 auto;
+            width: 8px;
+            height: 8px;
+            margin-top: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .email-card {
+            overflow: hidden;
+        }
+
+        .email-header {
+            padding: 28px;
+            color: #ffffff;
+            background:
+                linear-gradient(135deg, rgba(14, 68, 80, 0.92), rgba(23, 107, 120, 0.88)),
+                url("https://i.ytimg.com/vi/mMbVVXKBnhg/maxresdefault.jpg") center/cover;
+        }
+
+        .email-header p {
+            margin: 0 0 8px;
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .email-header h2 {
+            max-width: 680px;
+            margin: 0;
+            font-size: clamp(28px, 4vw, 42px);
+            line-height: 1.05;
+            letter-spacing: -0.05em;
+        }
+
+        .email-body {
+            padding: clamp(24px, 5vw, 46px);
+        }
+
+        .email-body p {
+            margin: 0 0 18px;
+            color: var(--muted);
+            font-size: 16px;
+        }
+
+        .email-body .greeting {
+            color: var(--ink);
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .section-title {
+            margin: 36px 0 16px;
+            color: var(--ink);
+            font-size: 22px;
+            letter-spacing: -0.04em;
+        }
+
+        .amenities {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+            margin: 16px 0 34px;
+        }
+
+        .amenity {
+            padding: 20px;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: var(--mist-2);
+        }
+
+        .amenity h3 {
+            margin: 0 0 8px;
+            color: var(--teal-dark);
+            font-size: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .amenity p,
+        .amenity li {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .amenity p {
+            margin: 0;
+        }
+
+        .amenity ul,
+        .steps {
+            margin: 10px 0 0;
+            padding-left: 19px;
+        }
+
+        .steps li {
+            margin-bottom: 7px;
+        }
+
+        .dining-link {
+            display: inline-flex;
+            margin-top: 10px;
+            color: var(--teal);
+            font-weight: 800;
+            word-break: break-word;
+        }
+
+        .closing {
+            padding: 24px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, var(--mist), #ffffff);
+        }
+
+        .signature {
+            margin-top: 22px;
+            color: var(--teal-dark);
+            font-weight: 800;
+        }
+
+        @media (max-width: 860px) {
+            .hero,
+            .email-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .side-panel {
+                position: static;
+            }
+
+            .quick-grid,
+            .amenities {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 560px) {
+            .page {
+                width: min(100% - 22px, 1120px);
+                padding-top: 18px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+                padding-bottom: 20px;
+            }
+
+            .hero-copy,
+            .email-body {
+                padding: 24px;
+            }
+
+            .quick-grid,
+            .amenities {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-mark">SH</div>
+                <span>SpringHill Suites McKinney</span>
+            </div>
+            <a class="nav-link" href="01-start-here.html">Back to Agent</a>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-copy">
+                    <div class="eyebrow">Guest Welcome</div>
+                    <h1>Welcome, {fullname:first}.</h1>
+                    <p class="lede">We are thrilled to have you with us at SpringHill Suites McKinney. Here is a quick, polished stay guide to help you feel settled from the moment you arrive.</p>
+                    <div class="hero-actions">
+                        <a class="button primary" href="#stay-guide">View Stay Guide</a>
+                        <a class="button secondary" href="https://linke.to/shs_attractions">Explore Dining Nearby</a>
+                    </div>
+                </div>
+
+                <aside class="hero-card" aria-label="Hotel welcome highlight">
+                    <div class="photo-panel">
+                        <div class="arrival-pill">Team available 24/7</div>
+                    </div>
+                    <div class="card-copy">
+                        <h2>Designed for an easy stay</h2>
+                        <p>Pool, breakfast, WiFi, local dining, parking, and housekeeping details are all gathered here in one simple guide.</p>
+                    </div>
+                </aside>
+            </section>
+
+            <section class="quick-grid" aria-label="Quick hotel highlights">
+                <div class="quick-card">
+                    <strong>Outdoor Pool</strong>
+                    <span>Daily, 10:00 AM to 10:00 PM</span>
+                </div>
+                <div class="quick-card">
+                    <strong>Fitness Center</strong>
+                    <span>Fully equipped and open 24 hours</span>
+                </div>
+                <div class="quick-card">
+                    <strong>Breakfast</strong>
+                    <span>Weekday and weekend hours below</span>
+                </div>
+                <div class="quick-card">
+                    <strong>Parking</strong>
+                    <span>$2 per day with front desk pass</span>
+                </div>
+            </section>
+
+            <section class="email-shell" id="stay-guide">
+                <aside class="side-panel" aria-label="Included details">
+                    <h2>Included in this guide</h2>
+                    <ul>
+                        <li><span class="dot"></span><span>Pool, fireplace, and fitness center</span></li>
+                        <li><span class="dot"></span><span>Ice machine and housekeeping details</span></li>
+                        <li><span class="dot"></span><span>Dining link and local recommendations</span></li>
+                        <li><span class="dot"></span><span>WiFi, breakfast, and parking information</span></li>
+                    </ul>
+                </aside>
+
+                <article class="email-card">
+                    <div class="email-header">
+                        <p>SpringHill Suites McKinney</p>
+                        <h2>Your stay guide, all in one place</h2>
+                    </div>
+
+                    <div class="email-body">
+                        <p class="greeting">Hi {fullname:first},</p>
+                        <p>Welcome to SpringHill Suites McKinney. We are absolutely thrilled to have you with us.</p>
+                        <p>Our entire team is excited to be part of your stay, and we take great pride in creating a warm, comfortable, and relaxing environment where you can unwind, recharge, and feel right at home.</p>
+                        <p>If there is ever anything you need during your stay, please do not hesitate to reach out. Our team is here for you 24/7 and happy to assist however we can.</p>
+
+                        <h2 class="section-title">Make the most of your stay</h2>
+                        <div class="amenities">
+                            <section class="amenity">
+                                <h3>Outdoor Pool & Fireplace</h3>
+                                <p>Enjoy a refreshing swim in our outdoor pool, open daily from 10:00 AM to 10:00 PM. When the sun sets, relax by our cozy fireplace right next to the pool area. It is a perfect spot to unwind.</p>
+                            </section>
+
+                            <section class="amenity">
+                                <h3>Fitness Center</h3>
+                                <p>Stay on top of your routine in our fully equipped 24-hour fitness center.</p>
+                            </section>
+
+                            <section class="amenity">
+                                <h3>Ice Machines</h3>
+                                <p>Ice machines are available on every floor. When you step out of the elevator, they are located just to the left.</p>
+                            </section>
+
+                            <section class="amenity">
+                                <h3>Local Dining</h3>
+                                <p>We are conveniently located within walking distance of several great bars and restaurants.</p>
+                                <a class="dining-link" href="https://linke.to/shs_attractions">View nearby options</a>
+                                <p style="margin-top: 10px;">Feel free to ask us for recommendations. We love sharing our local favorites.</p>
+                            </section>
+
+                            <section class="amenity">
+                                <h3>Free Guest WiFi</h3>
+                                <p>Stay connected with complimentary WiFi.</p>
+                                <ol class="steps">
+                                    <li>Select the "Marriott Bonvoy Guest" network.</li>
+                                    <li>Choose "Already a Member."</li>
+                                    <li>Enter your last name and room number in the dropdowns. Membership is not required.</li>
+                                </ol>
+                            </section>
+
+                            <section class="amenity">
+                                <h3>Complimentary Breakfast</h3>
+                                <p>Join us for breakfast in the lobby:</p>
+                                <ul>
+                                    <li>Weekdays: 6:30 AM to 9:30 AM</li>
+                                    <li>Weekends: 7:00 AM to 10:00 AM</li>
+                                </ul>
+                            </section>
+
+                            <section class="amenity">
+                                <h3>Parking</h3>
+                                <p>Parking is $2 per day. Please stop by the front desk for a parking pass.</p>
+                            </section>
+
+                            <section class="amenity">
+                                <h3>Housekeeping</h3>
+                                <p>We offer housekeeping every other day. If you need fresh towels, toiletries, coffee, or anything else, just stop by the front desk and we will gladly accommodate.</p>
+                            </section>
+                        </div>
+
+                        <section class="closing">
+                            <p>We are honored to have you with us and are committed to making your experience a great one. Thank you for choosing SpringHill Suites McKinney. We hope you enjoy every moment of your stay.</p>
+                            <div class="signature">Warmly,<br>The SpringHill Suites McKinney Team</div>
+                        </section>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
